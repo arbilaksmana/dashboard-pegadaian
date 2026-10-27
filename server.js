@@ -4,7 +4,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 const cheerio = require('cheerio');
 
-const HOST = '127.0.0.1';
+// Bind ke semua interface agar dashboard bisa dibuka dari perangkat lain di
+// jaringan yang sama (mis. HP). Untuk pemakaian yang hanya boleh diakses mesin
+// sendiri, jalankan dengan HOST=127.0.0.1.
+const HOST = process.env.HOST || '0.0.0.0';
 const PORT = Number(process.env.PORT || 8787);
 const SOURCE_URL = 'https://galeri24.co.id/harga-emas';
 const CACHE_TTL_MS = 5 * 60 * 1000;

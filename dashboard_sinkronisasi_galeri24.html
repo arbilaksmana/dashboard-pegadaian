@@ -323,7 +323,9 @@
             day: 'numeric', month: 'long', year: 'numeric'
         });
 
-        const PRICE_API_URL = 'http://127.0.0.1:8787/api/gold-prices';
+        // Saat dashboard dibuka lewat server (http/https) pakai origin yang sama.
+        // Hanya mode file:// yang menunjuk proxy lokal.
+        const PRICE_API_URL = (window.location.protocol === 'file:' ? 'http://127.0.0.1:8787' : '') + '/api/gold-prices';
         const PRICE_REFRESH_INTERVAL_MS = 5 * 60 * 1000;
         let lastSuccessfulPriceSync = null;
         let priceFetchInProgress = false;
